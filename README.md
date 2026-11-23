@@ -99,16 +99,31 @@ Note: This is a local hybrid-cloud simulation using Minikube, not a deployment o
 
 The project demonstrates three resource optimization techniques:
 
-1. Docker image optimization: Uses the Python slim base image, disables pip cache and avoids unnecessary bytecode files. The current application image content size is approximately 46.1 MB.
+1. Docker image optimization: Uses the Python slim base image, disables pip cache and avoids unnecessary bytecode files.
 2. Resource right-sizing: Web containers use CPU requests of 100m and memory requests of 64Mi, with limits of 250m CPU and 128Mi memory.
 3. Horizontal autoscaling: Maintains 2 replicas during low load and scales up to 6 replicas when CPU utilization increases.
 
-Observed idle usage:
+### Docker Image Size Measurement
+
+Both the baseline and current Dockerfiles were built and measured using Docker Desktop.
+
+| Measurement | Baseline | Current |
+|---|---:|---:|
+| Disk usage | 191 MB | 191 MB |
+| Content size | 46.1 MB | 46.1 MB |
+| Exact image size | 46,138,672 bytes | 46,138,672 bytes |
+
+Measured image size reduction: 0%.
+
+The comparison showed no additional image size reduction because the baseline already used the same Docker optimization practices.
+
+### Observed Resource Usage
+
 - Web pod CPU: approximately 1m each.
 - Web pod memory: approximately 63–65Mi each.
 - Redis memory: approximately 9Mi.
 
-These measurements demonstrate resource management; actual monetary savings depend on the cloud provider and pricing model.
+These measurements demonstrate resource management and autoscaling. Actual monetary savings depend on the cloud provider and pricing model.
 
 ## 10. Health Check Endpoints
 - `/health` – Liveness check.
