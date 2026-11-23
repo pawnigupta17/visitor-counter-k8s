@@ -1,0 +1,21 @@
+TECHNIQUE 1: Docker Image Size Comparison
+Date: 23 November 2026
+
+Unoptimized comparison build:
+Image: visitor-counter:unoptimized
+Size: 419941666 bytes (approximately 420 MB)
+
+Current project build:
+Image: visitor-counter:current
+Size: 46138672 bytes (approximately 46.1 MB)
+
+Difference: 373802994 bytes
+Percentage reduction: 89.01%
+
+Method:
+Compared a deliberately unoptimized Python 3.12 Docker build
+with the existing Python 3.12-slim project build.
+
+Note:
+This is a controlled comparison build, not a historical
+measurement of the original project.
